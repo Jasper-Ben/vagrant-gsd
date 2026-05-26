@@ -2,7 +2,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "debian/trixie64"
   config.vm.box_version = "13.20260519.1"
 
-  mem = (ENV['VAGRANT_MEM'] || 4096).to_i
+  mem = (ENV['VAGRANT_MEM'] || 8192).to_i
   cpus = (ENV['VAGRANT_CPUS'] || 4).to_i
   gsd_project_dir = ENV['GSD_PROJECT_DIR'] || nil
   # determine when to require the env var
