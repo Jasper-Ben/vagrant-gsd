@@ -18,9 +18,15 @@ Vagrant.configure("2") do |config|
     lv.cpus   = cpus
   end
   config.vm.synced_folder ".", "/vagrant", disabled: true
-  config.vm.synced_folder "~/.gsd", "/home/vagrant/.gsd", type: "nfs", nfs_version: 4
+
+  config.vm.synced_folder "~/.gsd",
+    "/home/vagrant/.gsd",
+    type: "nfs", nfs_version: 4
   if invoked
-    config.vm.synced_folder gsd_project_dir, "/home/vagrant/" + File.basename(gsd_project_dir), type: "nfs", nfs_version: 4
+    config.vm.synced_folder gsd_project_dir,
+      "/home/vagrant/" + File.basename(gsd_project_dir),
+      type: "nfs",
+      nfs_version: 4
   end
 
   config.vm.provision "shell", inline: <<-SHELL
