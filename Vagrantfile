@@ -59,5 +59,12 @@ Vagrant.configure("2") do |config|
     test -e "/nix" || \
       curl --proto '=https' --tlsv1.2 -sSf -L https://install.lix.systems/lix | \
       sh -s -- install linux --no-confirm
+
+    sudo -u vagrant git config --global user.name "GSD"
+    sudo -u vagrant git config --global user.email "GSD@local"
   SHELL
+  config.vm.provision "file",
+    source: "~/.ssh/known_hosts",
+    destination: "/home/vagrant/.ssh/known_hosts",
+    run: "always"
 end
