@@ -1,6 +1,7 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "debian/trixie64"
   config.vm.box_version = "13.20260519.1"
+  gsd_version = "v1.1.1"
 
   mem = (ENV['VAGRANT_MEM'] || 8192).to_i
   cpus = (ENV['VAGRANT_CPUS'] || 4).to_i
@@ -49,7 +50,7 @@ Vagrant.configure("2") do |config|
 
     curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
     apt-get install -y nodejs
-    npm install -g @opengsd/gsd-pi@1.0.2
+    npm install -g @opengsd/gsd-pi@#{gsd_version}
 
     # ensure SSH allows X11Forwarding (usually default)
     sed -i 's/^#X11Forwarding yes/X11Forwarding yes/' /etc/ssh/sshd_config || true
