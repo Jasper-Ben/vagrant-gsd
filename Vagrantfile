@@ -42,7 +42,8 @@ Vagrant.configure("2") do |config|
       x11-apps \
       dbus-user-session \
       fonts-dejavu-core \
-      bash-completion
+      bash-completion \
+      firefox-esr
 
     DIRENV_SHELLHOOK='eval "$(direnv hook bash)"'
     BASHRC_PATH="/home/vagrant/.bashrc"
@@ -50,7 +51,7 @@ Vagrant.configure("2") do |config|
 
     curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
     apt-get install -y nodejs
-    npm install -g @opengsd/gsd-pi@#{gsd_version}
+    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install -g @opengsd/gsd-pi@#{gsd_version}
 
     # ensure SSH allows X11Forwarding (usually default)
     sed -i 's/^#X11Forwarding yes/X11Forwarding yes/' /etc/ssh/sshd_config || true
