@@ -17,6 +17,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider :libvirt do |lv|
     lv.memory = mem
     lv.cpus   = cpus
+    cpu_mode = "host-passthrough"
   end
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
