@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "debian/trixie64"
   config.vm.box_version = "13.20260519.1"
-  gsd_version = "v1.2.0"
+  gsd_version = "v1.3.0"
 
   mem = (ENV['VAGRANT_MEM'] || 8192).to_i
   cpus = (ENV['VAGRANT_CPUS'] || 4).to_i
