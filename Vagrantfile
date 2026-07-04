@@ -1,7 +1,8 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "debian/trixie64"
   config.vm.box_version = "13.20260519.1"
-  gsd_version = "v1.5.0"
+  gsd_pi_version = "v1.5.0"
+  gsd_browser_version = "v0.2.1"
 
   mem = (ENV['VAGRANT_MEM'] || 8192).to_i
   cpus = (ENV['VAGRANT_CPUS'] || 4).to_i
@@ -32,7 +33,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "shell", inline: <<-SHELL
-    set -e
+    set -ex
 
     apt-get update -y
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -44,7 +45,7 @@ Vagrant.configure("2") do |config|
       dbus-user-session \
       fonts-dejavu-core \
       bash-completion \
-      firefox-esr
+      chromium
 
     DIRENV_SHELLHOOK='eval "$(direnv hook bash)"'
     BASHRC_PATH="/home/vagrant/.bashrc"
@@ -52,7 +53,8 @@ Vagrant.configure("2") do |config|
 
     curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
     apt-get install -y nodejs
-    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install -g @opengsd/gsd-pi@#{gsd_version}
+    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npx @opengsd/gsd-pi@#{gsd_pi_version} --yes
+    npm install -g @opengsd/gsd-browser@#{gsd_browser_version} --yes
 
     # ensure SSH allows X11Forwarding (usually default)
     sed -i 's/^#X11Forwarding yes/X11Forwarding yes/' /etc/ssh/sshd_config || true
