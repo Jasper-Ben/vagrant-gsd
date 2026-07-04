@@ -45,7 +45,8 @@ Vagrant.configure("2") do |config|
       dbus-user-session \
       fonts-dejavu-core \
       bash-completion \
-      chromium
+      chromium \
+      podman
 
     DIRENV_SHELLHOOK='eval "$(direnv hook bash)"'
     BASHRC_PATH="/home/vagrant/.bashrc"
