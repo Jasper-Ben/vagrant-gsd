@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "debian/trixie64"
   config.vm.box_version = "13.20260519.1"
-  gsd_pi_version = "v1.5.0"
+  gsd_pi_version = "v1.9.0"
   gsd_browser_version = "v0.2.1"
 
   mem = (ENV['VAGRANT_MEM'] || 8192).to_i
